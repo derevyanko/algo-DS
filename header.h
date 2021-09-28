@@ -13,7 +13,7 @@ constexpr string_view STANDINGS_PATH = "data/standings/";
 
 // };
 
-#include "SportDisciplineInfoList.h"
+#include "SportDisciplinesInfoList.h"
 #include "DisciplinesPlaceList.h"
 #include "StandingsList.h"
 
