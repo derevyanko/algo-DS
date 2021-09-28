@@ -9,6 +9,7 @@ int main() {
     StandingsList standingsList = readStandings(STANDINGS_PATH);
     standingsList.print();
 
+    writeStandings(STANDINGS_PATH, sportDisciplinesInfoList, standingsList);
     return 0;
     bool isOpened = true;
     // while (isOPened)

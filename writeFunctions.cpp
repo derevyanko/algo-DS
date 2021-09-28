@@ -10,13 +10,43 @@ void writeParticipants(const string_view participantFileName, SportDisciplinesIn
     }
 }
 
-void writeStandings(const string_view standingsPath, StandingsList list)
+void writeStandings(const string_view standingsPath, SportDisciplinesInfoList disciplinesList, StandingsList standingsList)
 {
     // нужно идти по спику дисциплин
-    // потом идти по странам, если есть эта дисциплина, то пихаем в векторе на определённое место
+    // потом идти по странам, если есть эта дисциплина, то записываем в массив на определённое место
     // потом это всё записываем
-    for (const auto &file : directory_iterator(standingsPath))
+
+    SportDisciplineInfo *nodeDisciplineInfo = disciplinesList.first;
+    while (nodeDisciplineInfo)
     {
-        // writeCountryStandings(file.path(), standinsList);
+        int countOfParticipant = nodeDisciplineInfo->countOfParticipant;
+        string disciplineName = nodeDisciplineInfo->disciplineName;
+        string filePath = STANDINGS_PATH.data() + disciplineName + ".txt";
+        fstream output(filePath);
+
+        cout << filePath << ":\n";
+
+        string standingsRes[countOfParticipant];
+        Country *nodeCountry = standingsList.first;
+        while (nodeCountry)
+        {
+            DisciplinePlace *nodeDisciplinePlace = nodeCountry->disciplinesPlace.first;
+
+            while (nodeDisciplinePlace)
+            {
+                if (nodeDisciplinePlace->name == nodeDisciplineInfo->disciplineName) {
+                    standingsRes[nodeDisciplinePlace->place - 1] = nodeCountry->name;
+                }
+
+                nodeDisciplinePlace = nodeDisciplinePlace->next;
+            }
+
+            nodeCountry = nodeCountry->next;
+        }
+        for (auto const countryName : standingsRes) {
+            output << countryName << " ";
+        }
+
+        nodeDisciplineInfo = nodeDisciplineInfo->next;
     }
 }

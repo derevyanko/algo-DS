@@ -101,7 +101,6 @@ struct StandingsList
 		last->next = node;
 		last = node;
 
-		// this->print();
 		cout << "\n";
 	}
 
