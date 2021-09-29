@@ -1,16 +1,20 @@
-void writeParticipants(const string_view participantFileName, SportDisciplinesInfoList list)
+void writeParticipants(const string_view participantFileName, const SportDisciplinesInfoList list)
 {
     fstream output(participantFileName);
 
     SportDisciplineInfo *node = list.first;
     while (node)
     {
-        output << node->disciplineName << node->countOfParticipant;
+        output << node->disciplineName << " " << node->countOfParticipant << "\n";
         node = node->next;
     }
 }
 
-void writeStandings(const string_view standingsPath, SportDisciplinesInfoList disciplinesList, StandingsList standingsList)
+void writeStandings(
+    const string_view standingsPath, 
+    const SportDisciplinesInfoList disciplinesList, 
+    const StandingsList standingsList
+)
 {
     // нужно идти по спику дисциплин
     // потом идти по странам, если есть эта дисциплина, то записываем в массив на определённое место

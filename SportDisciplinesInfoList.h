@@ -73,7 +73,7 @@ struct SportDisciplinesInfoList
 
 	// Нахождение первого вхождения по значению
 	// key = 3
-	SportDisciplineInfo *findDiscipline(string disciplineName)
+	SportDisciplineInfo* findDiscipline(string disciplineName)
 	{
 		SportDisciplineInfo *node = first;
 
@@ -87,14 +87,19 @@ struct SportDisciplinesInfoList
 
 	// Удаление элемента по значению
 	// key = 4
-	void deleteDiscipline(string disciplineName)
+	void deleteDiscipline(string disciplineName, StandingsList &standingsList)
 	{
 		if (isEmpty())
 			return;
 
 		if (first->disciplineName == disciplineName)
 		{
-			popFront();
+			SportDisciplineInfo *node = first;
+			first = node->next;
+			delete node;
+
+			standingsList.deleteDiscipline(disciplineName);
+			
 			return;
 		}
 
@@ -113,47 +118,12 @@ struct SportDisciplinesInfoList
 
 		current->next = next->next;
 		delete next;
-	}
 
-	// Удаление первого элемента
-	// key = 5
-	void popFront()
-	{
-		if (isEmpty())
-			return;
-
-		SportDisciplineInfo *node = first;
-		first = node->next;
-		delete node;
-	}
-
-	// Удаление последнего элемента
-	// key = 6
-	void popBack()
-	{
-		if (isEmpty())
-			return;
-
-		if (first == last)
-		{
-			popFront();
-
-			return;
-		}
-
-		SportDisciplineInfo *node = first;
-		while (node->next != last)
-		{
-			node = node->next;
-		}
-
-		node->next = NULL;
-		delete last;
-		last = node;
+		standingsList.deleteDiscipline(disciplineName);
 	}
 
 	// Вывод списка
-	// key = 7
+	// key = 5
 	void print()
 	{
 		if (isEmpty())

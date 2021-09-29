@@ -9,7 +9,13 @@ int main() {
     StandingsList standingsList = readStandings(STANDINGS_PATH);
     standingsList.print();
 
+    sportDisciplinesInfoList.deleteDiscipline("Football", standingsList);
+    sportDisciplinesInfoList.print();
+
+    writeParticipants(PARTICIPANTS_PATH, sportDisciplinesInfoList);
     writeStandings(STANDINGS_PATH, sportDisciplinesInfoList, standingsList);
+
+    // writeStandings(STANDINGS_PATH, sportDisciplinesInfoList, standingsList);
     return 0;
     bool isOpened = true;
     // while (isOPened)
@@ -23,7 +29,8 @@ int main() {
         // УДАЛЕНИЕ ДАННЫХ
         // если удалять что-то в одном из списков, должно цепочно удаляться и в других списках, где есть эти данные
         // дисциплину вроде можно норм удалить, удалив её из других списков также
-        // у всех стран просто пропадут призовые места
+        // у всех стран просто пропадут места
+
         // удаление страны из списка результатов под сомнением
         // тогда нужно смещать страны в плане результатов в дисциплинах, где у неё призовые места
 
@@ -39,13 +46,6 @@ int main() {
         
         // ПЕРЕЧИТАТЬ ВСË ЭТО!!!
     // }
-    
-    // ЕБАТЬ ЖЕ ДОХУЯ ВСЕГО
-    // БЛЯ МОЖЕТ ЧËТ НЕ НАПИСАТЬ
-    // ОНА ЖЕ ВСË ЧЕКАТЬ НЕ БУДЕТ
-    // ТУ ЖЕ ЗАПИСЬ В ФАЙЛЫ ОБРАТНУЮ МОЖЕТ СОКРАТИТЬ КАК-ТО, ХЗ
-    // ТИПА СКАЗАТЬ ЗАДАНИЕ ЖЕ НА ЭТО БЫЛО
-    // КАРОЧЕ НУЖНО НЕМНОГО ВЫКРУТИТЬСЯ
  
     return 0;
 }

@@ -151,6 +151,31 @@ struct StandingsList
 		delete next;
 	}
 
+	void deleteDiscipline(const string disciplineName)
+	{
+		if (isEmpty())
+			return;
+
+		Country *nodeCountry = first;
+		while (nodeCountry)
+		{
+			DisciplinePlace* nodeDiscipline = nodeCountry->disciplinesPlace.first;
+
+			while (nodeDiscipline)
+			{
+				if (nodeDiscipline->name == disciplineName) {
+					nodeCountry->disciplinesPlace.deleteDiscipline(disciplineName);
+					return;
+				}
+
+				nodeDiscipline = nodeDiscipline->next;
+			}
+			
+			nodeCountry = nodeCountry->next;
+		}
+		
+	}
+
 	// Вывод списка
 	// key = 4
 	void print()
