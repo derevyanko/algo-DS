@@ -9,12 +9,11 @@ int main() {
     StandingsList standingsList = readStandings(STANDINGS_PATH);
     standingsList.print();
 
-    sportDisciplinesInfoList.deleteDiscipline("Football", standingsList);
+    sportDisciplinesInfoList.deleteDiscipline("Volleyball", standingsList);
     sportDisciplinesInfoList.print();
+    standingsList.print();
 
-    writeParticipants(PARTICIPANTS_PATH, sportDisciplinesInfoList);
-    writeStandings(STANDINGS_PATH, sportDisciplinesInfoList, standingsList);
-
+    // writeParticipants(PARTICIPANTS_PATH, sportDisciplinesInfoList);
     // writeStandings(STANDINGS_PATH, sportDisciplinesInfoList, standingsList);
     return 0;
     bool isOpened = true;

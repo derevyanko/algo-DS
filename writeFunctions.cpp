@@ -1,5 +1,6 @@
 void writeParticipants(const string_view participantFileName, const SportDisciplinesInfoList list)
 {
+    // fstream output(participantFileName, std::ofstream::out | ofstream::trunc);
     fstream output(participantFileName);
 
     SportDisciplineInfo *node = list.first;
@@ -26,9 +27,8 @@ void writeStandings(
         int countOfParticipant = nodeDisciplineInfo->countOfParticipant;
         string disciplineName = nodeDisciplineInfo->disciplineName;
         string filePath = STANDINGS_PATH.data() + disciplineName + ".txt";
+        // fstream output(filePath, std::ofstream::out | ofstream::trunc);
         fstream output(filePath);
-
-        cout << filePath << ":\n";
 
         string standingsRes[countOfParticipant];
         Country *nodeCountry = standingsList.first;

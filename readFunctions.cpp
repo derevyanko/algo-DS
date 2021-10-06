@@ -12,8 +12,6 @@ SportDisciplinesInfoList readParticipants(const string_view participantFileName)
         sportDisciplinesInfoList.pushBack(sportDisciplineName, participantsCount);
     }
 
-    remove(participantFileName);
-
     return sportDisciplinesInfoList;
 }
 
@@ -43,10 +41,6 @@ void readCountryStandings(const string standingsPath, StandingsList *standingsLi
     string countryName;
     for (int place = 1; input >> countryName; place++)
     {
-        cout << countryName << " ";
         standingsList->push(countryName, disciplineName, place);
     }
-    cout << "\n";
-
-    remove(standingsPath);
 }

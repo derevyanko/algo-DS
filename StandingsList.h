@@ -100,8 +100,6 @@ struct StandingsList
 
 		last->next = node;
 		last = node;
-
-		cout << "\n";
 	}
 
 	// Нахождение первого вхождения по значению
@@ -165,7 +163,6 @@ struct StandingsList
 			{
 				if (nodeDiscipline->name == disciplineName) {
 					nodeCountry->disciplinesPlace.deleteDiscipline(disciplineName);
-					return;
 				}
 
 				nodeDiscipline = nodeDiscipline->next;

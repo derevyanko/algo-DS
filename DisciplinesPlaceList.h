@@ -103,7 +103,10 @@ struct DisciplinesPlaceList
 
 		if (first->name == name)
 		{
-			popFront();
+			DisciplinePlace *node = first;
+			first = node->next;
+			delete node;
+
 			return;
 		}
 
@@ -122,45 +125,8 @@ struct DisciplinesPlaceList
 		delete next;
 	}
 
-	// Удаление первого элемента
-	// key = 5
-	void popFront()
-	{
-		if (isEmpty())
-			return;
-
-		DisciplinePlace *node = first;
-		first = node->next;
-		delete node;
-	}
-
-	// Удаление последнего элемента
-	// key = 6
-	void popBack()
-	{
-		if (isEmpty())
-			return;
-
-		if (first == last)
-		{
-			popFront();
-
-			return;
-		}
-
-		DisciplinePlace *node = first;
-		while (node->next != last)
-		{
-			node = node->next;
-		}
-
-		node->next = NULL;
-		delete last;
-		last = node;
-	}
-
 	// Вывод списка
-	// key = 7
+	// key = 5
 	void print()
 	{
 		if (isEmpty())
