@@ -104,7 +104,7 @@ struct StandingsList
 
 	// Нахождение первого вхождения по значению
 	// key = 2
-	Country *findCountry(string name, int place)
+	Country *find(string name)
 	{
 		Country *node = first;
 

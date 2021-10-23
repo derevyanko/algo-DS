@@ -17,6 +17,10 @@ struct DisciplinePlace
 		this->place = place;
 		next = NULL;
 	}
+
+	void print() {
+		cout << "Discipline: " << this->name << " " << this->place << "\n";
+	}
 };
 
 struct DisciplinesPlaceList
@@ -82,7 +86,7 @@ struct DisciplinesPlaceList
 
 	// Нахождение первого вхождения по значению
 	// key = 2
-	DisciplinePlace *findDiscipline(string name)
+	DisciplinePlace *find(string name)
 	{
 		DisciplinePlace *node = first;
 

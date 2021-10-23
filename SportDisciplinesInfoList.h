@@ -17,6 +17,10 @@ struct SportDisciplineInfo
 		this->countOfParticipant = countOfParticipant;
 		next = NULL;
 	}
+
+	void print() {
+		cout << "Discipline: " << this->disciplineName << " " << this->countOfParticipant << "\n";
+	}
 };
 
 struct SportDisciplinesInfoList
@@ -73,7 +77,7 @@ struct SportDisciplinesInfoList
 
 	// Нахождение первого вхождения по значению
 	// key = 3
-	SportDisciplineInfo* findDiscipline(string disciplineName)
+	SportDisciplineInfo* find(string disciplineName)
 	{
 		SportDisciplineInfo *node = first;
 

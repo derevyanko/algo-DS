@@ -1,0 +1,10 @@
+cmake-build-debug/
+CMakeFiles/
+Testing/
+.vscode/
+.DS_Store
+cmake_install.cmake
+CMakeCache.txt
+CMakeLists.txt
+main
+Makefile
