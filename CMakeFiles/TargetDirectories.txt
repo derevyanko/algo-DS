@@ -1,3 +1,0 @@
-/Users/derevyanko/univer/algo&DS/linked_list/CMakeFiles/rebuild_cache.dir
-/Users/derevyanko/univer/algo&DS/linked_list/CMakeFiles/edit_cache.dir
-/Users/derevyanko/univer/algo&DS/linked_list/CMakeFiles/DisciplinesPlaceList.h.dir
