@@ -1,11 +1,19 @@
+# apply .gitignore changes
+# git rm -r --cached .
+
+# general
 cmake-build-debug/
-CMakeFiles/
-Testing/
 .vscode/
 .DS_Store
+
+linked_list/cmake-build-debug/
+linked_list/CMakeFiles/
+linked_list/Testing/
+linked_list/.vscode/
+linked_list/.idea/
 cmake_install.cmake
-CMakeCache.txt
-CMakeLists.txt
-main
-Makefile
-linked_list.cbp
+linked_list/CMakeCache.txt
+linked_list/CMakeLists.txt
+linked_list/main
+linked_list/Makefile
+linked_list/linked_list.cbp
