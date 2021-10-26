@@ -5,8 +5,8 @@
 using namespace std;
 using std::filesystem::directory_iterator;
 
-constexpr string_view PARTICIPANTS_PATH = "data/participants.txt";
-constexpr string_view STANDINGS_PATH = "data/standings/";
+constexpr string_view PARTICIPANTS_PATH = "../data/participants.txt";
+constexpr string_view STANDINGS_PATH = "../data/standings/";
 
 enum UserInput
 {

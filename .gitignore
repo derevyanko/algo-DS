@@ -6,6 +6,7 @@ cmake-build-debug/
 .vscode/
 .DS_Store
 
+#linked_list
 linked_list/cmake-build-debug/
 linked_list/CMakeFiles/
 linked_list/Testing/
