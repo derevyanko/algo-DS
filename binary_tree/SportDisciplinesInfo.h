@@ -26,8 +26,25 @@ public:
     friend SportDisciplinesInfo *remove(SportDisciplinesInfo *node, string disciplineName);
     friend SportDisciplinesInfo *find(SportDisciplinesInfo *node, string disciplineName);
     friend SportDisciplinesInfo *minValue(SportDisciplinesInfo *node);
-    friend void inOrder(SportDisciplinesInfo *node);
+    friend void inOrder(const SportDisciplinesInfo *node);
+    friend void inOrderFile(ofstream &output, const SportDisciplinesInfo *node);
     friend void print(SportDisciplinesInfo *node);
+
+    string getDisciplineName() const {
+        return disciplineName;
+    }
+
+    int getCountOfParticipant() const {
+        return countOfParticipant;
+    }
+
+    SportDisciplinesInfo* getLeft() const {
+        return left;
+    }
+
+    SportDisciplinesInfo* getRight() const {
+        return right;
+    }
 };
 
 bool isLeaf(SportDisciplinesInfo *node) {
@@ -58,8 +75,6 @@ SportDisciplinesInfo* remove(
     string disciplineName
 ) {
     if (node == nullptr) return node;
-
-    print(node);
 
     if (node->disciplineName > disciplineName) {
         node->left = remove(node->left, disciplineName);
@@ -113,12 +128,23 @@ SportDisciplinesInfo* minValue(SportDisciplinesInfo *node) {
     return current;
 }
 
-void inOrder(SportDisciplinesInfo *node) {
+void inOrder(const SportDisciplinesInfo *node) {
     if (node == nullptr) return;
 
-    inOrder(node->left);
-    cout << "• " << node->disciplineName << ' ' << node->countOfParticipant << "\n";
-    inOrder(node->right);
+    inOrder(node->getLeft());
+    cout << "• " << node->getDisciplineName() << ' ' << node->getCountOfParticipant() << "\n";
+    inOrder(node->getRight());
+}
+
+void inOrderFile(ofstream &output, const SportDisciplinesInfo *node) {
+    if (node == nullptr) return;
+
+    inOrderFile(output, node->getLeft());
+    output << node->getDisciplineName() << ' ' << node->getCountOfParticipant();
+    if (node->getRight()) {
+        output << "\n";
+        inOrderFile(output, node->getRight());
+    }
 }
 
 void print(SportDisciplinesInfo *node) {

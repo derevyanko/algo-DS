@@ -1,26 +1,19 @@
-void writeParticipants(const string_view participantFileName, const SportDisciplinesInfoList list)
+void writeParticipants(const string_view participantFileName, const SportDisciplinesInfo *node)
 {
-    fstream output(participantFileName, std::ofstream::out | ofstream::trunc);
+    ofstream output(participantFileName, ofstream::out | ofstream::trunc);
 
-    SportDisciplineInfo *node = list.first;
-    while (node)
-    {
-        output << node->disciplineName << " " << node->countOfParticipant << "\n";
-        node = node->next;
-    }
+    inOrderFile(output, node);
+
+    output.close();
 }
 
 void writeStandings(
     const string_view standingsPath, 
-    const SportDisciplinesInfoList disciplinesList, 
-    const StandingsList standingsList
+    const SportDisciplinesInfo disciplines, 
+    const Country standings
 )
 {
-    // нужно идти по спиcку дисциплин
-    // потом идти по странам, если есть эта дисциплина, то записываем в массив на определённое место
-    // потом это всё записываем
-
-    SportDisciplineInfo *nodeDisciplineInfo = disciplinesList.first;
+    SportDisciplinesInfo *nodeDisciplineInfo = disciplines;
     while (nodeDisciplineInfo)
     {
         int countOfParticipant = nodeDisciplineInfo->countOfParticipant;
@@ -29,10 +22,10 @@ void writeStandings(
         fstream output(filePath, std::ofstream::out | ofstream::trunc);
 
         string standingsRes[countOfParticipant];
-        Country *nodeCountry = standingsList.first;
+        Country *nodeCountry = standings;
         while (nodeCountry)
         {
-            DisciplinePlace *nodeDisciplinePlace = nodeCountry->disciplinesPlace.first;
+            DisciplinesPlace *nodeDisciplinePlace = nodeCountry->disciplinesPlace;
 
             while (nodeDisciplinePlace)
             {

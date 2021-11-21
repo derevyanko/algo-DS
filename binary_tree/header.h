@@ -1,4 +1,8 @@
 #include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <random>
 #include <fstream>
 #include <filesystem>
 
@@ -20,5 +24,14 @@ enum UserInput
 };
 
 #include "SportDisciplinesInfo.h"
+#include "DisciplinesPlace.h"
+#include "Standings.h"
+
+SportDisciplinesInfo *readParticipants(const string_view);
+
+Country *readStandings(const string_view);
+
+Country *readCountryStandings(const string, Country*);
 
 #include "readFunctions.h"
+#include "writeFunctions.h"

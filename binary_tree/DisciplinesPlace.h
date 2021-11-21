@@ -1,11 +1,5 @@
 class DisciplinesPlace {
 private:
-    string name;
-	int place;
-
-    DisciplinesPlace *left;
-    DisciplinesPlace *right;
-
     DisciplinesPlace() {
         this->name = "";
         this->place = 0;
@@ -21,10 +15,16 @@ private:
     }
 
 public:
+    string name;
+	int place;
+
+    DisciplinesPlace *left;
+    DisciplinesPlace *right;
+
     friend bool DisciplinesPlace(DisciplinesPlace *node);
     friend DisciplinesPlace *insert(DisciplinesPlace *node, string name, int place);
-    friend DisciplinesPlace *remove(DisciplinesPlace *node, string name);
-    friend DisciplinesPlace *find(DisciplinesPlace *node, string name);
+    friend DisciplinesPlace *remove(DisciplinesPlace *node, string name, int place);
+    friend DisciplinesPlace *find(DisciplinesPlace *node, string name, int place);
     friend DisciplinesPlace *minValue(DisciplinesPlace *node);
     friend void inOrder(DisciplinesPlace *node);
     friend void print(DisciplinesPlace *node);
@@ -44,7 +44,7 @@ DisciplinesPlace *insert(
         return node;
     }
 
-    if (node->place >= place) {
+    if (node->place > place) {
         node->left = insert(node->left, name, place);
     } else {
         node->right = insert(node->right, name, place);
@@ -53,57 +53,59 @@ DisciplinesPlace *insert(
     return node;
 }
 
-SportDisciplinesInfo* remove(
-    SportDisciplinesInfo *node,
-    string name
+DisciplinesPlace* remove(
+    DisciplinesPlace *node,
+    string name,
+    int place
 ) {
     if (node == nullptr) return node;
 
     if (node->place > place) {
-        node->left = remove(node->left, name);
+        node->left = remove(node->left, name, place);
     } else if (node->place < place) {
-        node->right = remove(node->right, name);
+        node->right = remove(node->right, name, place);
     } else {
         if (isLeaf(node)) {
             return nullptr;
         } else if (node->left == nullptr) {
-            SportDisciplinesInfo *temp = node->right;
+            DisciplinesPlace *temp = node->right;
             free(node);
             return temp;
         } else if (node->right == nullptr) {
-            SportDisciplinesInfo *temp = node->left;
+            DisciplinesPlace *temp = node->left;
             free(node);
             return temp;
         }
 
-        SportDisciplinesInfo *temp = minValue(node->right);
+        DisciplinesPlace *temp = minValue(node->right);
 
         node->name = temp->name;
         node->place = temp->place;
 
-        node->right = remove(node->right, name);
+        node->right = remove(node->right, name, place);
     }
 
     return node;
 }
 
-SportDisciplinesInfo* find(
-    SportDisciplinesInfo *node,
-    string name
+DisciplinesPlace* find(
+    DisciplinesPlace *node,
+    string name,
+    int place
 ) {
     if (node == nullptr) return nullptr;
 
-    if (node->disciplineName > disciplineName) {
-        return find(node->left, disciplineName);
+    if (node->place > place) {
+        return find(node->left, name, place);
     }
-    if (node->disciplineName < disciplineName) {
-        return find(node->right, disciplineName);
+    if (node->place < place) {
+        return find(node->right, name, place);
     }
     return node;
 }
 
-SportDisciplinesInfo* minValue(SportDisciplinesInfo *node) {
-    SportDisciplinesInfo *current = node;
+DisciplinesPlace* minValue(DisciplinesPlace *node) {
+    DisciplinesPlace *current = node;
 
     while (current && current->left != nullptr)
         current = current->left;
@@ -111,15 +113,15 @@ SportDisciplinesInfo* minValue(SportDisciplinesInfo *node) {
     return current;
 }
 
-void inOrder(SportDisciplinesInfo *node) {
+void inOrder(DisciplinesPlace *node) {
     if (node == nullptr) return;
 
     inOrder(node->left);
-    cout << "• " << node->name << ' ' << node->place << "\n";
+    print(node);
     inOrder(node->right);
 }
 
-void print(SportDisciplinesInfo *node) {
+void print(DisciplinesPlace *node) {
     if (node)
-        cout << node->name << ' ' << node->place << "\n";
+        cout << node->name << ' ' << node->place << " | ";
 }
