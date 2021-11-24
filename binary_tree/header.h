@@ -14,7 +14,8 @@ constexpr string_view STANDINGS_PATH = "../data/standings/";
 
 enum UserInput
 {
-    removeDiscipline = 1,
+    insertDiscipline = 1,
+    removeDisciplineInfo,
     printSportDisciplinesInfo,
     printStandings,
     printCountryPlaces,
@@ -23,9 +24,9 @@ enum UserInput
     closeApp
 };
 
-#include "SportDisciplinesInfo.h"
 #include "DisciplinesPlace.h"
 #include "Standings.h"
+#include "SportDisciplinesInfo.h"
 
 SportDisciplinesInfo *readParticipants(const string_view);
 
@@ -37,3 +38,4 @@ void writeStandings(const string_view standingsPath, SportDisciplinesInfo *disci
 
 #include "readFunctions.h"
 #include "writeFunctions.h"
+#include "functions.cpp"

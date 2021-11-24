@@ -9,11 +9,12 @@ SportDisciplinesInfo *readParticipants(const string_view participantFileName)
         int participantsCount;
         input >> sportDisciplineName >> participantsCount;
         cout << sportDisciplineName << " " << participantsCount << "\n";
-        node = insert(
-            node,
-            sportDisciplineName,
-            participantsCount
-        );
+        if (sportDisciplineName != "")
+            node = insert(
+                node,
+                sportDisciplineName,
+                participantsCount
+            );
     }
 
     input.close();

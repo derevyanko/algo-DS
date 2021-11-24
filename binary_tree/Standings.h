@@ -1,7 +1,6 @@
 class Country {
 private:
     string name;
-	DisciplinesPlace *disciplinesPlace;
 
     Country *left;
     Country *right;
@@ -21,6 +20,8 @@ private:
     }
 
 public:
+    DisciplinesPlace *disciplinesPlace;
+
     friend bool isLeaf(Country *node);
     friend Country *insert(Country *node, string name, string disciplineName, int place);
     friend Country *remove(Country *node, string name);
@@ -113,6 +114,19 @@ Country* remove(
 
         node->right = remove(node->right, name);
     }
+
+    return node;
+}
+
+Country* removeDiscipline(
+    Country *node,
+    string disciplineName
+) {
+    if (node == nullptr) return node;
+
+    removeDiscipline(node->getLeft(), disciplineName);
+    node->disciplinesPlace = remove(node->disciplinesPlace, disciplineName);
+    removeDiscipline(node->getRight(), disciplineName);
 
     return node;
 }

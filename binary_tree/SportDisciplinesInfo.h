@@ -1,10 +1,5 @@
 class SportDisciplinesInfo {
 private:
-    string disciplineName;
-    int countOfParticipant;
-
-    SportDisciplinesInfo *left;
-    SportDisciplinesInfo *right;
 
     SportDisciplinesInfo() {
         this->disciplineName = "";
@@ -21,6 +16,12 @@ private:
     }
 
 public:
+    string disciplineName;
+    int countOfParticipant;
+
+    SportDisciplinesInfo *left;
+    SportDisciplinesInfo *right;
+
     friend bool isLeaf(SportDisciplinesInfo *node);
     friend SportDisciplinesInfo *insert(SportDisciplinesInfo *node, string disciplineName, int countOfParticipant);
     friend SportDisciplinesInfo *remove(SportDisciplinesInfo *node, string disciplineName);
@@ -72,16 +73,18 @@ SportDisciplinesInfo *insert(
 
 SportDisciplinesInfo* remove(
     SportDisciplinesInfo *node,
-    string disciplineName
+    string disciplineName,
+    Country *country
 ) {
     if (node == nullptr) return node;
 
-    if (node->disciplineName > disciplineName) {
-        node->left = remove(node->left, disciplineName);
-    } else if (node->disciplineName < disciplineName) {
-        node->right = remove(node->right, disciplineName);
+    if (node->getDisciplineName() > disciplineName) {
+        node->left = remove(node->left, disciplineName, country);
+    } else if (node->getDisciplineName() < disciplineName) {
+        node->right = remove(node->right, disciplineName, country);
     } else {
         if (isLeaf(node)) {
+            country = removeDiscipline(country, disciplineName);
             return nullptr;
         } else if (node->left == nullptr) {
             SportDisciplinesInfo *temp = node->right;
@@ -98,7 +101,7 @@ SportDisciplinesInfo* remove(
         node->disciplineName = temp->disciplineName;
         node->countOfParticipant = temp->countOfParticipant;
 
-        node->right = remove(node->right, disciplineName);
+        node->right = remove(node->right, disciplineName, country);
     }
 
     return node;
@@ -140,11 +143,8 @@ void inOrderFile(ofstream &output, const SportDisciplinesInfo *node) {
     if (node == nullptr) return;
 
     inOrderFile(output, node->getLeft());
-    output << node->getDisciplineName() << ' ' << node->getCountOfParticipant();
-    if (node->getRight()) {
-        output << "\n";
-        inOrderFile(output, node->getRight());
-    }
+    output << node->getDisciplineName() << ' ' << node->getCountOfParticipant() << "\n";
+    inOrderFile(output, node->getRight());
 }
 
 void print(SportDisciplinesInfo *node) {

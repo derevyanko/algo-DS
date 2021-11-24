@@ -23,8 +23,8 @@ public:
 
     friend bool DisciplinesPlace(DisciplinesPlace *node);
     friend DisciplinesPlace *insert(DisciplinesPlace *node, string name, int place);
-    friend DisciplinesPlace *remove(DisciplinesPlace *node, string name, int place);
-    friend DisciplinesPlace *find(DisciplinesPlace *node, string name, int place);
+    friend DisciplinesPlace *remove(DisciplinesPlace *node, string name);
+    friend DisciplinesPlace *find(DisciplinesPlace *node, string name);
     friend DisciplinesPlace *minValue(DisciplinesPlace *node);
     friend void inOrder(DisciplinesPlace *node);
     friend void print(DisciplinesPlace *node);
@@ -44,7 +44,7 @@ DisciplinesPlace *insert(
         return node;
     }
 
-    if (node->place > place) {
+    if (node->name > name) {
         node->left = insert(node->left, name, place);
     } else {
         node->right = insert(node->right, name, place);
@@ -55,15 +55,14 @@ DisciplinesPlace *insert(
 
 DisciplinesPlace* remove(
     DisciplinesPlace *node,
-    string name,
-    int place
+    string name
 ) {
     if (node == nullptr) return node;
 
-    if (node->place > place) {
-        node->left = remove(node->left, name, place);
-    } else if (node->place < place) {
-        node->right = remove(node->right, name, place);
+    if (node->name > name) {
+        node->left = remove(node->left, name);
+    } else if (node->name < name) {
+        node->right = remove(node->right, name);
     } else {
         if (isLeaf(node)) {
             return nullptr;
@@ -82,7 +81,7 @@ DisciplinesPlace* remove(
         node->name = temp->name;
         node->place = temp->place;
 
-        node->right = remove(node->right, name, place);
+        node->right = remove(node->right, name);
     }
 
     return node;
@@ -90,16 +89,15 @@ DisciplinesPlace* remove(
 
 DisciplinesPlace* find(
     DisciplinesPlace *node,
-    string name,
-    int place
+    string name
 ) {
     if (node == nullptr) return nullptr;
 
-    if (node->place > place) {
-        return find(node->left, name, place);
+    if (node->name > name) {
+        return find(node->left, name);
     }
-    if (node->place < place) {
-        return find(node->right, name, place);
+    if (node->name < name) {
+        return find(node->right, name);
     }
     return node;
 }
