@@ -148,6 +148,5 @@ void inOrderFile(ofstream &output, const SportDisciplinesInfo *node) {
 }
 
 void print(SportDisciplinesInfo *node) {
-    if (node)
-        cout << node->disciplineName << ' ' << node->countOfParticipant << "\n";
+    if (node) cout << node->disciplineName << ' ' << node->countOfParticipant << "\n";
 }

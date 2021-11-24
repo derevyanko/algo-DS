@@ -8,7 +8,7 @@ int main() {
     Country *country = readStandings(STANDINGS_PATH);
     inOrder(country);
 
-    // write
+    writeStandings(STANDINGS_PATH, sportDisciplinesInfo, country);
 
     // bool isOpened = true;
     // while (isOpened)

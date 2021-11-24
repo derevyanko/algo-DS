@@ -9,39 +9,70 @@ void writeParticipants(const string_view participantFileName, const SportDiscipl
 
 void writeStandings(
     const string_view standingsPath, 
-    const SportDisciplinesInfo disciplines, 
-    const Country standings
+    SportDisciplinesInfo *disciplines, 
+    Country *standings
 )
 {
     SportDisciplinesInfo *nodeDisciplineInfo = disciplines;
-    while (nodeDisciplineInfo)
+    stack<SportDisciplinesInfo*> disciplineStack;
+    while (nodeDisciplineInfo || !disciplineStack.empty())
     {
-        int countOfParticipant = nodeDisciplineInfo->countOfParticipant;
-        string disciplineName = nodeDisciplineInfo->disciplineName;
+        while(nodeDisciplineInfo) {
+            disciplineStack.push(nodeDisciplineInfo);
+            nodeDisciplineInfo = nodeDisciplineInfo->getLeft();
+        }
+
+        nodeDisciplineInfo = disciplineStack.top();
+        disciplineStack.pop();
+
+        int countOfParticipant = nodeDisciplineInfo->getCountOfParticipant();
+        string disciplineName = nodeDisciplineInfo->getDisciplineName();
         string filePath = STANDINGS_PATH.data() + disciplineName + ".txt";
         fstream output(filePath, std::ofstream::out | ofstream::trunc);
 
         string standingsRes[countOfParticipant];
         Country *nodeCountry = standings;
-        while (nodeCountry)
+        stack<Country*> countries;
+        while (nodeCountry || !countries.empty())
         {
-            DisciplinesPlace *nodeDisciplinePlace = nodeCountry->disciplinesPlace;
-
-            while (nodeDisciplinePlace)
+            while(nodeCountry)
             {
-                if (nodeDisciplinePlace->name == nodeDisciplineInfo->disciplineName) {
-                    standingsRes[nodeDisciplinePlace->place - 1] = nodeCountry->name;
-                }
-
-                nodeDisciplinePlace = nodeDisciplinePlace->next;
+                countries.push(nodeCountry);
+                nodeCountry = nodeCountry->getLeft();
             }
 
-            nodeCountry = nodeCountry->next;
+            nodeCountry = countries.top();
+            countries.pop();
+
+            DisciplinesPlace *nodeDisciplinePlace = nodeCountry->getDisciplinesPlace();
+            stack<DisciplinesPlace*> disciplinePlaces;
+            while(nodeDisciplinePlace || !disciplinePlaces.empty())
+            {
+                while (nodeDisciplinePlace)
+                {
+                    disciplinePlaces.push(nodeDisciplinePlace);
+                    nodeDisciplinePlace = nodeDisciplinePlace->left;
+                }
+                
+                nodeDisciplinePlace = disciplinePlaces.top();
+                disciplinePlaces.pop();
+
+                if (nodeDisciplinePlace->name == nodeDisciplineInfo->getDisciplineName())
+                {
+                    standingsRes[nodeDisciplinePlace->place - 1] = nodeCountry->getName();
+                }
+
+                nodeDisciplinePlace = nodeDisciplinePlace->right;
+            }
+
+            nodeCountry = nodeCountry->getRight();
         }
-        for (auto const countryName : standingsRes) {
+
+        for (const auto countryName: standingsRes) 
+        {
             output << countryName << " ";
         }
 
-        nodeDisciplineInfo = nodeDisciplineInfo->next;
+        nodeDisciplineInfo = nodeDisciplineInfo->getRight();
     }
 }

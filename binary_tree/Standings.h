@@ -6,6 +6,13 @@ private:
     Country *left;
     Country *right;
 
+    Country() {
+        this->name = "";
+        this->disciplinesPlace = nullptr;
+        this->left = nullptr;
+        this->right = nullptr;
+    }
+
     Country(string name) {
         this->name = name;
         this->disciplinesPlace = nullptr;
@@ -21,6 +28,22 @@ public:
     friend Country *minValue(Country *node);
     friend void inOrder(Country *node);
     friend void print(Country *node);
+
+    string getName() const {
+        return name;
+    }
+
+    DisciplinesPlace* getDisciplinesPlace() const {
+        return disciplinesPlace;
+    }
+
+    Country* getLeft() const {
+        return left;
+    }
+
+    Country* getRight() const {
+        return right;
+    }
 };
 
 bool isLeaf(Country *node) {

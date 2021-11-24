@@ -33,5 +33,7 @@ Country *readStandings(const string_view);
 
 Country *readCountryStandings(const string, Country*);
 
+void writeStandings(const string_view standingsPath, SportDisciplinesInfo *disciplines, Country *standings);
+
 #include "readFunctions.h"
 #include "writeFunctions.h"
