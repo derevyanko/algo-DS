@@ -25,5 +25,6 @@ binary_tree/main
 
 #graph
 graph/main
+graph/generateTest
 graph/input.txt
 graph/output.txt
