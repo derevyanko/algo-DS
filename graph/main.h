@@ -9,12 +9,23 @@ constexpr string_view OUTPUT_FILE_NAME = "output.txt";
 
 constexpr int64_t INF = INT64_MAX - 1;
 
+struct Edge {
+    int fromVertex;
+    int toVertex;
+    int weight;
+};
+
+struct InputData {
+    int verticesNumber;
+    int roadsNumber;
+
+    vector<Edge> edges;
+};
+
 struct AnswerType {
     int vertexNumber;
     int64_t waysSum;
 };
-
-#include "InputData.h"
 
 InputData readInputData(istream&);
 
