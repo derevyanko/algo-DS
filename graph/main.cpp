@@ -5,6 +5,8 @@ int main() {
     ofstream outputFile(OUTPUT_FILE_NAME);
 
     const InputData inputData = readInputData(inputFile);
+    const AnswerType minimumWaysSumAnswer = calculateMinimumWaysSum(inputData);
+    printMinimumSumAnswer(outputFile, minimumWaysSumAnswer);
 
     inputFile.close();
     outputFile.close();
