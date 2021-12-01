@@ -25,3 +25,5 @@ binary_tree/./main
 
 #graph
 graph/./main
+graph/input.txt
+graph/output.txt

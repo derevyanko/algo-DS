@@ -1,2 +1,0 @@
-Vertex number: 5
-Ways sum = 8070450532247928856
