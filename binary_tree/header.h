@@ -30,11 +30,11 @@ enum UserInput
 
 SportDisciplinesInfo *readParticipants(const string_view);
 
-Country *readStandings(const string_view);
+Country *readStandings(const string_view, SportDisciplinesInfo*);
 
-Country *readCountryStandings(const string, Country*);
+Country *readCountryStandings(const string, const string, Country*);
 
-void writeStandings(const string_view standingsPath, SportDisciplinesInfo *disciplines, Country *standings);
+void writeStandings(const string_view, SportDisciplinesInfo*, Country*);
 
 #include "readFunctions.h"
 #include "writeFunctions.h"

@@ -1,5 +1,4 @@
 Athletics 4
-Basketball 4
 Football 4
 Volleyball 4
 Weightlifting 4

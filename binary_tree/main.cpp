@@ -5,7 +5,7 @@ int main() {
     inOrder(sportDisciplinesInfo);
     cout << "\n";
     
-    Country *country = readStandings(STANDINGS_PATH);
+    Country *country = readStandings(STANDINGS_PATH, sportDisciplinesInfo);
     inOrder(country);
     cout << "\n";
 
