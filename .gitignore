@@ -5,6 +5,7 @@
 cmake-build-debug/
 .vscode/
 .DS_Store
+.idea
 
 #linked_list
 linked_list/cmake-build-debug/
@@ -18,3 +19,9 @@ linked_list/CMakeLists.txt
 linked_list/main
 linked_list/Makefile
 linked_list/linked_list.cbp
+
+#binary tree
+binary_tree/./main
+
+#graph
+graph/./main
