@@ -130,3 +130,10 @@ void mergeSort(vector<T>& array, int left, int right) {
     mergeSort(array, mid + 1, right);
     merge(array, left, mid, right);
 }
+
+template<typename T>
+void heapSort(vector<T>& array) {
+    make_heap(array.begin(), array.end());
+    for (auto i = array.end(); i != array.begin(); i--)
+        pop_heap(array.begin(), i);
+}

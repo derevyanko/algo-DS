@@ -137,7 +137,25 @@ int main() {
         time_table["mergeSort"]["reversed"][size] = duration.count();
     }
 
-    cout << "Printing start...\n";
+    cout << "HeapSort start...\n";
+    for (auto size : initialVectorSizes) {
+        vector<int> vec = createRandomVector(size, -size, +size);
+
+        start = chrono::system_clock::now();
+        heapSort(vec);
+        end = chrono::system_clock::now();
+        chrono::duration<double> duration = end - start;
+        time_table["heapSort"]["random"][size] = duration.count();
+
+        vec = createReversedSortedVector(size);
+        start = chrono::system_clock::now();
+        heapSort(vec);
+        end = chrono::system_clock::now();
+        duration = end - start;
+        time_table["heapSort"]["reversed"][size] = duration.count();
+    }
+
+    cout << "Saving start...\n";
     for (auto sort : time_table) {
         cout << "Name: " << sort.first << "\n";
         ofstream out("tests/" + sort.first + ".txt");
