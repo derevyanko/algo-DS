@@ -25,8 +25,3 @@ void printVector(vector<T> array) {
     for (auto a : array) cout << a << ' ';
     cout << "\n";
 }
-
-void testSort(void (&f)(int) )
-{
-    f( 42 );
-}

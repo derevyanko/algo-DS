@@ -28,6 +28,9 @@ void insertionSort(vector<T>& array);
 template <typename T>
 void selectionSort(vector<T>& array);
 
+template<typename T>
+void mergeSort(vector<T>& array, int left, int right);
+
 #include "sorting.cpp"
 
 // functions

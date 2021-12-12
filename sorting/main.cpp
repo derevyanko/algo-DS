@@ -4,15 +4,17 @@ int main() {
 
     srand(0);
 
-    vector<int> initialVectorSizes{10, 100, 1000, 10000, 20000, 30000, 40000, 50000};
+    // vector<int> initialVectorSizes{10, 100, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}; for release
+    vector<int> initialVectorSizes{10}; // for tests
     map<string, map<string, map<size_t, double> > > time_table;
     chrono::system_clock::time_point start, end;
     chrono::duration<double> duration;
 
     cout << "QSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
-
+        vector<int> vec;
+        
+        vec = createRandomVector(size, -size, +size);
         start = chrono::system_clock::now();
         qsort(vec, 0, vec.size() - 1);
         end = chrono::system_clock::now();
@@ -26,8 +28,6 @@ int main() {
         duration = end - start;
         time_table["qsort"]["reversed"][size] = duration.count();
     }
-
-    return 0;
 
     cout << "BubbleSort start...\n";
     for (auto size : initialVectorSizes) {
@@ -119,10 +119,28 @@ int main() {
         time_table["selectionSort"]["reversed"][size] = duration.count();
     }
 
+    cout << "MergeSort start...\n";
+    for (auto size : initialVectorSizes) {
+        vector<int> vec = createRandomVector(size, -size, +size);
+
+        start = chrono::system_clock::now();
+        mergeSort(vec, 0, vec.size() - 1);
+        end = chrono::system_clock::now();
+        chrono::duration<double> duration = end - start;
+        time_table["mergeSort"]["random"][size] = duration.count();
+
+        vec = createReversedSortedVector(size);
+        start = chrono::system_clock::now();
+        mergeSort(vec, 0, vec.size() - 1);
+        end = chrono::system_clock::now();
+        duration = end - start;
+        time_table["mergeSort"]["reversed"][size] = duration.count();
+    }
+
     cout << "Printing start...\n";
     for (auto sort : time_table) {
         cout << "Name: " << sort.first << "\n";
-        ofstream out(sort.first + ".txt");
+        ofstream out("tests/" + sort.first + ".txt");
         for (auto typeArray : sort.second) {
             for (auto test : typeArray.second) {
                 cout << "Type array: " << typeArray.first << "\t" << fixed << setprecision(10) << "Size: " << test.first << "\t Time: " << test.second << "\n";
