@@ -12,165 +12,236 @@ int main() {
 
     cout << "QSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec;
-        
-        vec = createRandomVector(size, -size, +size);
-        start = chrono::system_clock::now();
-        qsort(vec, 0, vec.size() - 1);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["qsort"]["random"][size] = duration.count();
+        double average = 0;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        qsort(vec, 0, vec.size() - 1);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["qsort"]["reversed"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            qsort(vec, 0, vec.size() - 1);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["qsort"]["random"][size] = average / TESTS_COUNT;
+
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            qsort(vec, 0, vec.size() - 1);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["qsort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "BubbleSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        bubbleSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["bubbleSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            bubbleSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["bubbleSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        bubbleSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["bubbleSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            bubbleSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["bubbleSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "ShakerSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        shakerSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["shakerSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            shakerSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["shakerSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        shakerSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["shakerSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            shakerSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["shakerSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "CombSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        combSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["combSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            combSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["combSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        combSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["combSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            combSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["combSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "InsertionSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        insertionSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["insertionSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            insertionSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["insertionSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        insertionSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["insertionSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            insertionSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["insertionSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "SelectionSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        selectionSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["selectionSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            selectionSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["selectionSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        selectionSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["selectionSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            selectionSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["selectionSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "MergeSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        mergeSort(vec, 0, vec.size() - 1);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["mergeSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            mergeSort(vec, 0, vec.size() - 1);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["mergeSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        mergeSort(vec, 0, vec.size() - 1);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["mergeSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            mergeSort(vec, 0, vec.size() - 1);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["mergeSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "HeapSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        heapSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["heapSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            heapSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["heapSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        heapSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["heapSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            heapSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["heapSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "ShellSort start...\n";
     for (auto size : initialVectorSizes) {
-        vector<int> vec = createRandomVector(size, -size, +size);
+        double average = 0;
 
-        start = chrono::system_clock::now();
-        shellSort(vec);
-        end = chrono::system_clock::now();
-        chrono::duration<double> duration = end - start;
-        time_table["shellSort"]["random"][size] = duration.count();
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createRandomVector(size, -size, +size);
+            start = chrono::system_clock::now();
+            shellSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["shellSort"]["random"][size] = average / TESTS_COUNT;
 
-        vec = createReversedSortedVector(size);
-        start = chrono::system_clock::now();
-        shellSort(vec);
-        end = chrono::system_clock::now();
-        duration = end - start;
-        time_table["shellSort"]["reversed"][size] = duration.count();
+        average = 0;
+        for (int i = 0; i < TESTS_COUNT; i++) {
+            vector<int> vec = createReversedSortedVector(size);
+            start = chrono::system_clock::now();
+            shellSort(vec);
+            end = chrono::system_clock::now();
+            duration = end - start;
+            average += duration.count();
+        }
+        time_table["shellSort"]["reversed"][size] = average / TESTS_COUNT;
     }
 
     cout << "Saving start...\n";

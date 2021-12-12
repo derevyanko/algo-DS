@@ -9,6 +9,8 @@
 
 using namespace std;
 
+constexpr int TESTS_COUNT = 5;
+
 // sorting
 template <typename T>
 void qsort(vector<int>& array, int left, int right);
