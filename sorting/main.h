@@ -11,30 +11,58 @@ using namespace std;
 
 constexpr int TESTS_COUNT = 5;
 
+struct TestAnswer {
+    int64_t comparison;
+    int64_t moving;
+
+    TestAnswer() {
+        comparison = 0;
+        moving = 0;
+    }
+
+    TestAnswer(int64_t comparison, int64_t moving) {
+        this->comparison = comparison;
+        this->moving = moving;
+    }
+
+    TestAnswer& operator+= (const TestAnswer& another) {
+        comparison += another.comparison;
+        moving += another.moving;
+        return *this;
+    }
+
+    TestAnswer operator/(const int number) {
+        return TestAnswer(comparison / number, moving / number);
+    }
+};
+
 // sorting
 template <typename T>
-void qsort(vector<int>& array, int left, int right);
+TestAnswer qsort(vector<int>& array, int left, int right);
 
 template <typename T>
-void bubbleSort(vector<T>& array);
+TestAnswer bubbleSort(vector<T>& array);
 
 template <typename T>
-void shakerSort(vector<T>& array);
+TestAnswer shakerSort(vector<T>& array);
 
 template <typename T>
-void combSort(vector<T>& array);
+TestAnswer combSort(vector<T>& array);
 
 template <typename T>
-void insertionSort(vector<T>& array);
+TestAnswer insertionSort(vector<T>& array);
 
 template <typename T>
-void selectionSort(vector<T>& array);
+TestAnswer selectionSort(vector<T>& array);
 
 template<typename T>
-void mergeSort(vector<T>& array, int left, int right);
+TestAnswer mergeSort(vector<T>& array, int left, int right);
+
+template<typename T>
+TestAnswer heapSort(vector<T>& array);
 
 template <typename T>
-void shellSort(vector<T>& array);
+TestAnswer shellSort(vector<T>& array);
 
 #include "sorting.cpp"
 

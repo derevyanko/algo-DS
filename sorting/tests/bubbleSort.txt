@@ -1,2 +1,2 @@
-random 10 1e-06
-reversed 10 8e-07
+random 10 45 23
+reversed 10 45 45
