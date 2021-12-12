@@ -31,6 +31,9 @@ void selectionSort(vector<T>& array);
 template<typename T>
 void mergeSort(vector<T>& array, int left, int right);
 
+template <typename T>
+void shellSort(vector<T>& array);
+
 #include "sorting.cpp"
 
 // functions

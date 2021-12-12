@@ -155,6 +155,24 @@ int main() {
         time_table["heapSort"]["reversed"][size] = duration.count();
     }
 
+    cout << "ShellSort start...\n";
+    for (auto size : initialVectorSizes) {
+        vector<int> vec = createRandomVector(size, -size, +size);
+
+        start = chrono::system_clock::now();
+        shellSort(vec);
+        end = chrono::system_clock::now();
+        chrono::duration<double> duration = end - start;
+        time_table["shellSort"]["random"][size] = duration.count();
+
+        vec = createReversedSortedVector(size);
+        start = chrono::system_clock::now();
+        shellSort(vec);
+        end = chrono::system_clock::now();
+        duration = end - start;
+        time_table["shellSort"]["reversed"][size] = duration.count();
+    }
+
     cout << "Saving start...\n";
     for (auto sort : time_table) {
         cout << "Name: " << sort.first << "\n";
