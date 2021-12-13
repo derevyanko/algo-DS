@@ -4,8 +4,8 @@ int main() {
 
     srand(0);
 
-    // vector<int> initialVectorSizes{10, 100, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}; for release
-    vector<int> initialVectorSizes{10}; // for tests
+    vector<int> initialVectorSizes{10, 100, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}; // for release
+    // vector<int> initialVectorSizes{10}; // for tests
     TestAnswer testResult;
     map<string, map<string, map<size_t, TestAnswer> > > time_table;
     chrono::system_clock::time_point start, end;
@@ -99,9 +99,6 @@ int main() {
             vector<int> vec = createRandomVector(size, -size, +size);
             testResult = insertionSort(vec);
             average += testResult;
-
-            for (auto a : vec) cout << a << ' ';
-            cout << "\n";
         }
         time_table["insertionSort"]["random"][size] = average / TESTS_COUNT;
 
